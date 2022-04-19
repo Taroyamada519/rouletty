@@ -1,0 +1,80 @@
+[
+    {
+        "id": 0,
+        "text": "ハワイ旅行<<<>>>日間",
+        "type": "number-in",
+        "numbers": [
+            3,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 1,
+        "text": "商品券<<<>>>万円分",
+        "type": "number-in",
+        "numbers": [
+            5,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 2,
+        "text": "カップ麺<<<>>>年分",
+        "type": "number-in",
+        "numbers": [
+            1,
+            0,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 3,
+        "text": "ティッシュ<<<>>>ヶ月分と洗剤<<<>>>ヶ月分",
+        "type": "number-in",
+        "numbers": [
+            3,
+            2,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 4,
+        "text": "全項目+1",
+        "type": "plus-numbers",
+        "numbers": [
+            1,
+            1,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 5,
+        "text": "全項目x2",
+        "type": "multiply-numbers",
+        "numbers": [
+            2,
+            2,
+            0,
+            0,
+            0
+        ]
+    },
+    {
+        "id": 6,
+        "text": " + 商品券",
+        "type": "add-text",
+        "numbers": []
+    }
+]
