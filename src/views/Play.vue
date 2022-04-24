@@ -1,7 +1,12 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <h1>Let's play with your own roulette!!</h1>
     <div class="uk-card uk-card-default uk-card-body item-card">
+      roll speed:
+      <div class="uk-margin">
+        <input class="uk-range uk-form-width-medium" type="range" v-model="rollSpeedFps" min="1" max="100" step="1">
+      </div>
+      <!-- rollSpeedFps: {{rollSpeedFps}} -->
       <div class="roulette-item"
            v-for="i in localItems"
            :key="i.id"
@@ -51,6 +56,7 @@ export default {
       num: 1,
       // localItems: this.items,
       stopFlag: true,
+      rollSpeedFps: 50,
       localItems: _.cloneDeep(this.items)  // deep copy
     }
   },
@@ -58,6 +64,9 @@ export default {
     selectedItem() {
       // return this.localItems[this.num]
       return this.localItems.filter(x => x.id == this.selectedId)[0]
+    },
+    rollingTime() {
+      return 1000.0 / this.rollSpeedFps
     }
   },
   methods: {
@@ -68,9 +77,9 @@ export default {
 
       let idx = 0
       this.stopFlag = false
-      this.roll(availableIdList, idx, 100)
+      this.roll(availableIdList, idx, this.rollingTime)
     },
-    roll(availableIdList, idx, ms) {
+    roll(availableIdList, idx) {
       setTimeout(() => {
         // ここに遅らせた後に行いたい処理を書く。関数でもOK
         if (this.stopFlag) {
@@ -83,7 +92,24 @@ export default {
         } else {
           idx = 0
         }
-        this.roll(availableIdList, idx, ms)
+        this.roll(availableIdList, idx)
+      }, this.rollingTime)
+    },
+    rollStaticTime(availableIdList, idx, ms) {
+      // 保存用に残してるだけで, 現状使っていない
+      setTimeout(() => {
+        // ここに遅らせた後に行いたい処理を書く。関数でもOK
+        if (this.stopFlag) {
+          this.localItems.filter(x => x.id == this.selectedId)[0].atSelected(this.localItems)
+          return 0
+        } 
+        this.selectedId = availableIdList[idx]
+        if (idx < availableIdList.length - 1) {
+          idx++
+        } else {
+          idx = 0
+        }
+        this.rollStaticTime(availableIdList, idx, ms)
       }, ms)
     },
     stop() {
