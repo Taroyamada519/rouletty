@@ -6,6 +6,8 @@
       <div class="uk-margin">
         <input class="uk-range uk-form-width-medium" type="range" v-model="rollSpeedFps" min="1" max="100" step="1">
       </div>
+      <a v-if="stopFlag" class="uk-button uk-button-primary under-button" @click="start()">play</a>
+      <a v-else class="uk-button uk-button-primary under-button" @click="stop()">stop</a>
       <!-- rollSpeedFps: {{rollSpeedFps}} -->
       <div class="roulette-item"
            v-for="i in localItems"
@@ -16,8 +18,6 @@
         {{i.showText()}}
       </div>
       <h3>{{selectedItem.showText()}}</h3>
-      <a v-if="stopFlag" class="uk-button uk-button-primary under-button" @click="start()">play</a>
-      <a v-else class="uk-button uk-button-primary under-button" @click="stop()">stop</a>
     </div>
     <!-- <a class="uk&#45;button uk&#45;button&#45;default under&#45;button" @click="addItem()">add</a> -->
     <!-- <a class="uk&#45;button uk&#45;button&#45;primary under&#45;button" @click="complete()">complete</a> -->
